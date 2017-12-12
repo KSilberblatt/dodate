@@ -1,9 +1,30 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import SideMenu from 'react-native-side-menu';
+import { styles, styles2, styles3 } from './app/stylesheets/index.js';
+
+import { Provider } from 'react-redux';
+import { createStore, applyMiddleware, combineReducers, compose } from 'redux';
+import thunkMiddleware from 'redux-thunk';
+import { createLogger } from 'redux-logger';
+import reducer from './app/reducers';
+import AppContainer from './app/containers/AppContainer';
+
+const loggerMiddleware = createLogger({ predicate: (getState, action) => __DEV__ });
+
+function configureStore(initialState) {
+  const enhancer = compose(
+    applyMiddleware(
+      thunkMiddleware,
+      loggerMiddleware
+    )
+  );
+  return createStore(reducer, initialState, enhancer);
+}
+const store = configureStore({});
 import {
   Dimensions,
-  StyleSheet,
+  AppRegistry,
   ScrollView,
   View,
   Image,
@@ -11,103 +32,18 @@ import {
   TouchableOpacity,
 } from 'react-native';
 
+
 const image = require('./knight_360.png');
 
-const styles3 = StyleSheet.create({
-  button: {
-    position: 'absolute',
-    top: 20,
-    padding: 10,
-  },
-  caption: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    alignItems: 'center',
-  },
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#00bcd4',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});
-
-class Basic extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.toggle = this.toggle.bind(this);
-
-    this.state = {
-      isOpen: false,
-      selectedItem: 'About',
-    };
-  }
-
-  toggle() {
-    this.setState({
-      isOpen: !this.state.isOpen,
-    });
-  }
-
-  updateMenuState(isOpen) {
-    this.setState({ isOpen });
-  }
-
-  onMenuItemSelected(item) {
-    this.setState({
-      isOpen: false,
-      selectedItem: item,
-    });
-  }
-
-  render() {
-    const menu = <Menu onItemSelected={this.onMenuItemSelected} />;
-
-    return (
-      <SideMenu
-        menu={menu}
-        isOpen={this.state.isOpen}
-        onChange={isOpen => this.updateMenuState(isOpen)}
-      >
-        <View style={styles3.container}>
-          <Text style={styles3.welcome}>
-            Welcome to Flippin DoDate
-          </Text>
-          <Text style={styles3.instructions}>
-            Mis Perritos!
-          </Text>
-          <Text style={styles3.instructions}>
-          </Text>
-          <Text style={styles3.instructions}>
-          </Text>
-        </View>
-        <TouchableOpacity
-          onPress={this.toggle}
-          style={styles3.button}
-        >
-          <Image
-            source={image}
-            style={{ width: 32, height: 32 }}
-          />
-        </TouchableOpacity>
-      </SideMenu>
-    );
+export default class App extends React.Component {
+  render(){
+    return <Provider store={store}>
+        <AppContainer />
+      </Provider>;
   }
 }
 
-
-export default class App extends React.Component {
+export class ContentView extends React.Component {
   constructor(props) {
     super(props);
 
@@ -178,74 +114,12 @@ export default class App extends React.Component {
     );
   }
 }
-
-class ContentView extends React.Component {
-  render() {
-    return (
-      <View style={styles3.container}>
-        <Text style={styles3.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles3.instructions}>
-          Mis Perritos!
-        </Text>
-        <Text style={styles3.instructions}>
-        </Text>
-      </View>
-    );
-  }
-}
-
-
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-
-    backgroundColor: '#00bcd4',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
-
-
-
 // -------------------------------------------
 
 
 
 const window = Dimensions.get('window');
 const uri = 'https://pickaface.net/gallery/avatar/Opi51c74d0125fd4.png';
-
-const styles2 = StyleSheet.create({
-  menu: {
-    flex: 1,
-    width: window.width,
-    height: window.height,
-    backgroundColor: 'gray',
-    padding: 20,
-  },
-  avatarContainer: {
-    marginBottom: 20,
-    marginTop: 20,
-  },
-  avatar: {
-    width: 48,
-    height: 48,
-    borderRadius: 24,
-    flex: 1,
-  },
-  name: {
-    position: 'absolute',
-    left: 70,
-    top: 20,
-  },
-  item: {
-    fontSize: 14,
-    fontWeight: '300',
-    paddingTop: 5,
-  },
-});
 
 function Menu({ onItemSelected }) {
   return (
