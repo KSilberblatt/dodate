@@ -6,60 +6,66 @@ import {
   Text,
   View,
   TextInput,
-  Container,
   ScrollView
 } from 'react-native';
-
-
-
-const styles = StyleSheet.create({
-  scroll: {
-    backgroundColor: '#E1D7D8',
-    padding: 30,
-    flexDirection: 'column'
-  },
-  textLabel: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    fontFamily: 'Verdana',
-    marginBottom: 10,
-    color: '#595856'
-  },
-  label: {
-    color: '#0d8898',
-    fontSize: 20
-  },
-  alignRight: {
-      alignSelf: 'flex-end'
-  },
-});
+import Icon from 'react-native-vector-icons/FontAwesome';
+import { loginStyle } from '../stylesheets/index';
 
 export default class Login extends Component {
   constructor(props){
     super(props);
   }
+  press() {
+  //execute any code here
+  }
   render() {
     return (
-        <ScrollView style={styles.scroll}>
-          <Container>
-            <Button
-                label="Forgot Login/Pass"
-                styles={{button: styles.alignRight, label: styles.label}}/>
-          </Container>
-          <Container>
+        <View style={loginStyle.loginView}>
+          <Text style={loginStyle.title}> DoDate
+          </Text>
+          <View>
             <Label text="Username or Email" />
             <TextInput
-                style={styles.textInput}
+                style={loginStyle.textInput}
             />
-          </Container>
-          <Container>
+        </View>
+          <View style={ loginStyle.passwordText }>
               <Label text="Password" />
               <TextInput
                   secureTextEntry={true}
-                  style={styles.textInput}
+                  style={loginStyle.textInput}
               />
-          </Container>
-        </ScrollView>
+          </View>
+          <View>
+            <Button
+                styles={{button: loginStyle.transparentButton}}
+                onPress={this.press.bind(this)}
+            >
+              <View style={loginStyle.inline}>
+                  <Icon name="facebook-official" size={30} color="#3B5699" />
+                  <Text style={[loginStyle.buttonBlueText, loginStyle.buttonBigText]}>  Connect </Text>
+                  <Text style={loginStyle.buttonBlueText}>with Facebook</Text>
+              </View>
+            </Button>
+          </View>
+          <View style={loginStyle.footer}>
+            <View>
+                <Button
+                    label="Log In"
+                    underlayColor="#C5E1A5"
+                    styles={{button: loginStyle.primaryButton, label: loginStyle.buttonWhiteText}}
+                    onPress={this.press.bind(this)} />
+                </View>
+            <View>
+                <Button
+                    label="Demo"
+                    styles={{label: loginStyle.buttonBlackText}}
+                    onPress={this.press.bind(this)} />
+                </View>
+          </View>
+
+
+        </View>
     );
   }
 }
