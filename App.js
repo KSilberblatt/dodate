@@ -9,6 +9,7 @@ import thunkMiddleware from 'redux-thunk';
 import { createLogger } from 'redux-logger';
 import reducer from './app/reducers';
 import AppContainer from './app/containers/AppContainer';
+import Login from './app/containers/Login';
 
 const loggerMiddleware = createLogger({ predicate: (getState, action) => __DEV__ });
 
@@ -38,7 +39,7 @@ const image = require('./knight_360.png');
 export default class App extends React.Component {
   render(){
     return <Provider store={store}>
-        <AppContainer />
+        <Login />
       </Provider>;
   }
 }

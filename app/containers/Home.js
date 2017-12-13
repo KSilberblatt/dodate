@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import Login from './Login';
 import {
   ScrollView,
   View,
@@ -24,7 +25,7 @@ class Home extends React.Component {
         </View>
 
         <ScrollView>
-
+          <Login></Login>
         </ScrollView>
       </View>;
   }
