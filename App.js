@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import SideMenu from 'react-native-side-menu';
 import { styles, styles2, styles3 } from './app/stylesheets/index.js';
 
+
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware, combineReducers, compose } from 'redux';
 import thunkMiddleware from 'redux-thunk';

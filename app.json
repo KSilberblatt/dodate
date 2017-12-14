@@ -1,5 +1,19 @@
 {
   "expo": {
-    "sdkVersion": "23.0.0"
+    "name": "DoDate",
+    "icon": "./knight_360.png",
+    "version": "1.0.0",
+    "sdkVersion": "23.0.0",
+    "privacy": "public",
+    "facebookScheme": "fb106796696755576",
+    "facebookAppId": "106796696755576",
+    "facebookDisplayName":"DoDate",
+    "ios": {
+      "bundleIdentifier": "com.dodate.dodate"
+    },
+    "android": {
+      "package": "com.dodate.dodate"
+    }
   }
+
 }

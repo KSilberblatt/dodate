@@ -10,13 +10,32 @@ import {
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { loginStyle } from '../stylesheets/index';
-
+async function logIn() {
+  const { type, token } = await Expo.Facebook.logInWithReadPermissionsAsync('<APP_ID>', {
+      permissions: ['public_profile'],
+    });
+  if (type === 'success') {
+    // Get the user's name using Facebook's Graph API
+    const response = await fetch(
+      `https://graph.facebook.com/me?access_token=${token}`);
+    Alert.alert(
+      'Logged in!',
+      `Hi ${(await response.json()).name}!`,
+    );
+  }
+}
 export default class Login extends Component {
   constructor(props){
     super(props);
   }
+
+  otherLogin(){
+    callbackManager = CallbackManager.Factory.create();
+    
+  }
+
   press() {
-  //execute any code here
+    logIn();
   }
   render() {
     return (
