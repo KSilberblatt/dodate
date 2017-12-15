@@ -1,9 +1,8 @@
-// Code inspire by
-// Jon Lebensold
-// https://www.youtube.com/watch?v=WrDwSRu8oz8&list=PLk083BmAphjtGWyZUuo1BiCS_ZAgps6j5&index=3
-      // 'X-Mashape-Key': 'qJUsbP6zFGmsh60qUu4Swdr6H4Lvp1xJ8djsns0FkN4OP57g', //TODO change before publish
 
 class Api {
+  // Code inspire by
+  // Jon Lebensold
+  // https://www.youtube.com/watch?v=WrDwSRu8oz8&list=PLk083BmAphjtGWyZUuo1BiCS_ZAgps6j5&index=3
   static headers() {
     return {
       'Accept': 'application/json',
@@ -43,4 +42,86 @@ class Api {
       return json.then(err => { throw err;});
     });
   }
+
 }
+
+export const fetchUsers = () => {
+  var xhr = new XMLHttpRequest();
+  xhr.open('GET', `https://dodateweb.herokuapp.com/api/users`);
+  xhr.onload = function() {
+      if (xhr.status === 200) {
+          alert('User\'s name is ' + xhr.responseText);
+      }
+      else {
+          alert('Request failed.  Returned status of ' + xhr.status);
+      }
+  };
+    let myU = xhr.responseText;
+    return myU;
+};
+
+export const fetchUser = (id) => {
+  var xhr = new XMLHttpRequest();
+  xhr.open('GET', `https://dodateweb.herokuapp.com/api/users/${id}`);
+  xhr.onload = function() {
+      if (xhr.status === 200) {
+          alert('User\'s name is ' + xhr.responseText);
+      }
+      else {
+          alert('Request failed.  Returned status of ' + xhr.status);
+      }
+  };
+    let myU = xhr.responseText;
+    return myU;
+};
+
+export const signup = (user) => {
+  let xhr = new XMLHttpRequest();
+  xhr.open('POST', 'https://dodateweb.herokuapp.com/api/users', true);
+  xhr.setRequestHeader("Content-Type", 'application/json');
+  xhr.onload = function() {
+      if (xhr.status === 200) {
+          alert('Something went wrong.  Name is now ' + xhr.responseText);
+      }
+      else if (xhr.status !== 200) {
+          alert('Request failed.  Returned status of ' + xhr.status);
+      }
+  };
+  console.log({user}, xhr);
+  let  myU = xhr.send(JSON.stringify({user}));
+  return myU;
+};
+
+export const login = (user) => {
+  let xhr = new XMLHttpRequest();
+  xhr.open('POST', 'https://dodateweb.herokuapp.com/api/session', true);
+  xhr.setRequestHeader("Content-Type", 'application/json');
+  xhr.onload = function() {
+      if (xhr.status === 200) {
+          alert('Something went wrong.  Name is now ' + xhr.responseText);
+      }
+      else if (xhr.status !== 200) {
+          alert('Request failed.  Returned status of ' + xhr.status);
+      }
+  };
+  console.log({user}, xhr);
+  let  myU = xhr.send(JSON.stringify({user}));
+  return myU;
+};
+
+
+
+export const logout = () => {
+  var xhr = new XMLHttpRequest();
+  xhr.open('DELETE', `https://dodateweb.herokuapp.com/api/session`);
+  xhr.onload = function() {
+      if (xhr.status === 200) {
+          alert('User\'s name is ' + xhr.responseText);
+      }
+      else {
+          alert('Request failed.  Returned status of ' + xhr.status);
+      }
+  };
+    let myU = xhr.responseText;
+    return myU;
+};
