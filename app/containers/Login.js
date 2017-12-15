@@ -10,6 +10,9 @@ import {
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { loginStyle } from '../stylesheets/index';
+import { fetchUsers } from '../actions/todos';
+
+
 async function logIn() {
   const { type, token } = await Expo.Facebook.logInWithReadPermissionsAsync('<APP_ID>', {
       permissions: ['public_profile'],
@@ -31,9 +34,11 @@ export default class Login extends Component {
 
   otherLogin(){
     callbackManager = CallbackManager.Factory.create();
-    
-  }
 
+  }
+  getUsers(){
+
+  }
   press() {
     logIn();
   }
@@ -73,7 +78,7 @@ export default class Login extends Component {
                     label="Log In"
                     underlayColor="#C5E1A5"
                     styles={{button: loginStyle.primaryButton, label: loginStyle.buttonWhiteText}}
-                    onPress={this.press.bind(this)} />
+                    onPress={fetchUsers()} />
                 </View>
             <View>
                 <Button
