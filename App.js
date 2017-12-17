@@ -23,7 +23,15 @@ function configureStore(initialState) {
   );
   return createStore(reducer, initialState, enhancer);
 }
-const store = configureStore({});
+let preloadedState = {};
+// if (window.currentUser) {
+//   preloadedState = {
+//     session: {
+//       currentUser: window.currentUser
+//     }
+//   };
+// }
+const store = configureStore(preloadedState);
 import {
   Dimensions,
   AppRegistry,

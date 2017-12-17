@@ -50,7 +50,7 @@ export const fetchUsers = () => {
   xhr.open('GET', `https://dodateweb.herokuapp.com/api/users`);
   xhr.onload = function() {
       if (xhr.status === 200) {
-          alert('User\'s name is ' + xhr.responseText);
+          alert('Users: ' + xhr.responseText);
       }
       else {
           alert('Request failed.  Returned status of ' + xhr.status);
@@ -65,7 +65,7 @@ export const fetchUser = (id) => {
   xhr.open('GET', `https://dodateweb.herokuapp.com/api/users/${id}`);
   xhr.onload = function() {
       if (xhr.status === 200) {
-          alert('User\'s name is ' + xhr.responseText);
+          alert('User\'s information: ' + xhr.responseText);
       }
       else {
           alert('Request failed.  Returned status of ' + xhr.status);
@@ -81,7 +81,7 @@ export const signup = (user) => {
   xhr.setRequestHeader("Content-Type", 'application/json');
   xhr.onload = function() {
       if (xhr.status === 200) {
-          alert('Something went wrong.  Name is now ' + xhr.responseText);
+          alert('User has been signed up: ' + xhr.responseText);
       }
       else if (xhr.status !== 200) {
           alert('Request failed.  Returned status of ' + xhr.status);
@@ -98,7 +98,7 @@ export const login = (user) => {
   xhr.setRequestHeader("Content-Type", 'application/json');
   xhr.onload = function() {
       if (xhr.status === 200) {
-          alert('Something went wrong.  Name is now ' + xhr.responseText);
+          alert('Session has been created: ' + xhr.responseText);
       }
       else if (xhr.status !== 200) {
           alert('Request failed.  Returned status of ' + xhr.status);
@@ -116,7 +116,7 @@ export const logout = () => {
   xhr.open('DELETE', `https://dodateweb.herokuapp.com/api/session`);
   xhr.onload = function() {
       if (xhr.status === 200) {
-          alert('User\'s name is ' + xhr.responseText);
+          alert('User\'s has been logged out: ' + xhr.responseText);
       }
       else {
           alert('Request failed.  Returned status of ' + xhr.status);
