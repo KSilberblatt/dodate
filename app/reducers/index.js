@@ -3,10 +3,9 @@ import errors from './errors';
 import entities from './entities';
 import { combineReducers } from 'redux';
 
-const rootReducer = combineReducers(Object.assign(
+const rootReducer = combineReducers({
   errors,
-  session,
-  entities
-));
+  session
+});
 
 export default rootReducer;

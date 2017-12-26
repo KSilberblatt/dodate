@@ -2,28 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import SideMenu from 'react-native-side-menu';
 import { styles, styles2, styles3 } from './app/stylesheets/index.js';
-
-
 import { Provider } from 'react-redux';
-import { createStore, applyMiddleware, combineReducers, compose } from 'redux';
 import thunkMiddleware from 'redux-thunk';
 import { createLogger } from 'redux-logger';
-import reducer from './app/reducers';
+import configureStore from './app/store/store';
 import AppContainer from './app/containers/AppContainer';
 import Login from './app/containers/Login';
 
-const loggerMiddleware = createLogger({ predicate: (getState, action) => __DEV__ });
-
-function configureStore(initialState) {
-  const enhancer = compose(
-    applyMiddleware(
-      thunkMiddleware,
-      loggerMiddleware
-    )
-  );
-  return createStore(reducer, initialState, enhancer);
-}
-let preloadedState = {};
+let preloadedState={};
 // if (window.currentUser) {
 //   preloadedState = {
 //     session: {
@@ -52,6 +38,7 @@ export default class App extends React.Component {
       </Provider>;
   }
 }
+AppRegistry.registerComponent('DoDate', () => App);
 
 export class ContentView extends React.Component {
   constructor(props) {
