@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import SideMenu from 'react-native-side-menu';
+import Viewport from './Viewport';
 import { styles, styles2, styles3 } from '../stylesheets/index.js';
 import {
   Dimensions,
@@ -59,16 +60,7 @@ export default class ContentView extends React.Component {
           menuPosition="left"
         >
           <View style={styles3.container}>
-            <Text style={styles3.welcome}>
-              Welcome to Flippin DoDate
-            </Text>
-            <Text style={styles3.instructions}>
-              Mis Perritos!
-            </Text>
-            <Text style={styles3.instructions}>
-            </Text>
-            <Text style={styles3.instructions}>
-            </Text>
+            <Viewport />
           </View>
           <TouchableOpacity
             onPress={this.toggle}
