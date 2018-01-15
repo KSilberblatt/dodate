@@ -9,6 +9,21 @@ export function addTodo() {
   };
 }
 
+
+// code inspired by https://www.thepolyglotdeveloper.com/2015/09/make-http-requests-in-ios-with-react-native/
+export function postUser(user){
+  fetch("https://dodateweb.herokuapp.com/api/session",
+  {method: "POST", body: JSON.stringify({user})})
+          .then((response) => response.json())
+          .then((responseData) => {
+              alert(
+                "POST Response",
+                "Response Body -> " + JSON.stringify(responseData.body)
+              );
+          })
+          .done();
+}
+
 //searchWords == ingredients
 export function fetchUsers(){
   return (dispatch, getState) => {
