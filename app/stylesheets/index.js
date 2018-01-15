@@ -36,7 +36,7 @@ export const viewportStyles = StyleSheet.create({
 });
 export const navBar = StyleSheet.create({
   navBar: {
-    height: '35%',
+    height: '15%',
     width: '100%',
     backgroundColor: myBlue,
     justifyContent: 'center'
@@ -57,9 +57,40 @@ export const day = StyleSheet.create({
     fontSize: 30,
     alignSelf: 'center',
     color: 'black',
+  },
+  border: {
     borderWidth: 2,
     borderStyle: 'solid',
-    borderBottomColor: 'lightgrey',
+    borderColor: 'lightgrey',
+    borderRadius: 10,
+    alignSelf: 'center',
+    width: '70%'
+  },
+  hours: {
+    display: 'flex',
+  },
+  backgroundDay:{
+    alignSelf: 'center',
+    position: 'absolute',
+    fontSize: 100,
+    color: myGrey,
+    top: '35%'
+  },
+  hour: {
+    flex: 1,
+    height: 50
+  },
+  hourText: {
+    color: myGrey,
+  },
+  test: {
+    backgroundColor: 'red',
+    height: 25,
+    width: '65%',
+    borderWidth: 2,
+    borderStyle: 'solid',
+    borderColor: 'lightgrey',
+    borderRadius: 10,
 
   },
 

@@ -11,6 +11,7 @@ import {
   Image,
   Text,
   TouchableOpacity,
+  FlatList,
 } from 'react-native';
 
 const image = require('../../knight_360.png');
@@ -21,6 +22,28 @@ export default class Day extends React.Component {
   }
 
   render() {
+    const hours = [];
+    for (let i = 8; i < 20; i++) {
+        if (i > 12) {
+            let hourNum = i - 12;
+            hours.push({ hour: hourNum, timeOfDay: "p", key: i+"p" });
+        }else{
+            if (i === 12) {
+            hours.push({ hour: i, timeOfDay: "p", key: i+"a" });
+            }else{
+            hours.push({ hour: i, timeOfDay: "a" , key: i+"a"});
+            }
+        }
+
+    }
+    let myHours= hours.map(hour => (
+        <View
+            workflowpos="M"
+            timeslot={hour.hour}
+        >
+
+      </View>
+    ));
 
     return (
       <View>
@@ -29,6 +52,17 @@ export default class Day extends React.Component {
         </View>
         <View style={day.schedule}>
           <Text style={day.header}>Monday</Text>
+          <View style={day.border}/>
+            <FlatList scrollEnabled={false} data={hours}
+              style={day.hours} renderItem={({item}) => (
+              <View workflowpos="M"
+                    timeslot={item.hour}
+                    style={day.hour}
+              >
+                <Text style={day.hourText}>{item.hour} {item.timeOfDay}</Text>
+              </View>
+            )}/>
+            <Text style={day.backgroundDay}>M</Text>
         </View>
       </View>
     );
