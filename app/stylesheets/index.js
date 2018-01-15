@@ -2,6 +2,8 @@ import {
   StyleSheet,
   Dimensions,
 } from 'react-native';
+const myBlue = "#80DEEA";
+const myGrey = 'rgba(47,79,79,0.3)';
 
 let CIRCLE_RADIUS = 36;
 let Window = Dimensions.get('window');
@@ -32,7 +34,36 @@ export const viewportStyles = StyleSheet.create({
         borderRadius        : CIRCLE_RADIUS
     }
 });
+export const navBar = StyleSheet.create({
+  navBar: {
+    height: '35%',
+    width: '100%',
+    backgroundColor: myBlue,
+    justifyContent: 'center'
+  },
+  text: {
+    marginTop: 20,
+    fontSize: 40,
+    alignSelf: 'center',
+    color: 'white'
+  }
+});
+export const day = StyleSheet.create({
+  schedule: {
+    display: 'flex',
+  },
+  header: {
+    marginTop: 5,
+    fontSize: 30,
+    alignSelf: 'center',
+    color: 'black',
+    borderWidth: 2,
+    borderStyle: 'solid',
+    borderBottomColor: 'lightgrey',
 
+  },
+
+});
 export const loginStyle = StyleSheet.create({
   passwordText: {
     paddingTop: 10

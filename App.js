@@ -9,7 +9,7 @@ import configureStore from './app/store/store';
 import AppContainer from './app/containers/AppContainer';
 import Week from './app/containers/Week';
 import Login from './app/containers/Login';
-import KanbanScreen from './app/containers/KanbanScreen';
+
 
 /* shit to lookup
   onLayout
