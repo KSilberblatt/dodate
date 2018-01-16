@@ -48,13 +48,23 @@ export const navBar = StyleSheet.create({
     color: 'white'
   }
 });
+export const week = StyleSheet.create({
+  week: {
+    display: 'flex',
+    flexDirection: 'column'
+  },
+  day: {
+    height: '100%'
+  },
+
+});
 export const day = StyleSheet.create({
   schedule: {
     display: 'flex',
   },
   header: {
     marginTop: 5,
-    fontSize: 30,
+    fontSize: 50,
     alignSelf: 'center',
     color: 'black',
   },
