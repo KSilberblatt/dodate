@@ -13,6 +13,8 @@ class Api {
     };
   }
 
+
+
   static get(route){
     return this.xhr(route, null, 'GET');
   }
@@ -110,6 +112,31 @@ export const login = (user) => {
 };
 
 
+
+// export const createTodo = (userId, todo) => (
+// $.ajax({
+//   method: 'POST',
+//   url: `https://dodateweb.herokuapp.com/api/users/${userId}/todos`,
+//
+//   data: {todo}
+// })
+// );
+//
+// export const deleteTodo = (userId, id) => (
+// $.ajax({
+//   method: 'DELETE',
+//   url: `https://dodateweb.herokuapp.com/api/users/${userId}/todos/${id}`,
+// })
+// );
+//
+// export const updateTodo = (userId, todo) => (
+// $.ajax({
+//   method: 'PATCH',
+//   url: `https://dodateweb.herokuapp.com/api/users/${userId}/todos/${todo.id}`,
+//
+//   data: { todo }
+// })
+// );
 
 export const logout = () => {
   var xhr = new XMLHttpRequest();

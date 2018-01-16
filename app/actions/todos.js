@@ -1,14 +1,35 @@
 
 //example
 import * as types from './types';
+import * as TodoAPIUtil from '../lib/todo_api_util';
 import Api from '../lib/api';
+export const RECEIVE_TODOS = 'RECEIVE_TODOS';
+export const RECEIVE_TODO = 'RECEIVE_TODO';
+
+export const fetchTodos = (userId) => dispatch => (
+  TodoAPIUtil.fetchTodos(userId)
+    .then(todos => (dispatch(receiveTodos(todos))))
+);
+
+export const fetchTodo = (userId, id) => dispatch => (
+  TodoAPIUtil.fetchTodo(userId, id)
+    .then(todo => (dispatch(receiveTodo(todo))))
+);
 export function addTodo() {
   return {
     type: types.ADD_TODO,
 
   };
 }
+const receiveTodos = (todos) => ({
+  type: RECEIVE_TODOS,
+  todos,
+});
 
+const receiveTodo = (todo) => ({
+  type: RECEIVE_TODO,
+  todo
+});
 
 // code inspired by https://www.thepolyglotdeveloper.com/2015/09/make-http-requests-in-ios-with-react-native/
 export function postUser(user){
