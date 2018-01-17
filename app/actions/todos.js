@@ -1,15 +1,52 @@
 
 //example
+import fetch from 'cross-fetch';
 import * as types from './types';
 import * as TodoAPIUtil from '../lib/todo_api_util';
 import Api from '../lib/api';
 export const RECEIVE_TODOS = 'RECEIVE_TODOS';
 export const RECEIVE_TODO = 'RECEIVE_TODO';
+export const REQUEST_TODOS = 'REQUEST_TODOS';
 
-export const fetchTodos = (userId) => dispatch => (
-  TodoAPIUtil.fetchTodos(userId)
-    .then(todos => (dispatch(receiveTodos(todos))))
-);
+export function fetchTodos(userId) {
+  return dispatch => {
+    dispatch(requestTodos(userId));
+    return fetch(`https://dodateweb.herokuapp.com/api/users/${userId}/todos`)
+      .then(response => response.json())
+      .then(json => receiveTodos(userId, json));
+  };
+}
+export function fetchTodosIfNeeded(userId) {
+  return (dispatch, getState) => {
+    if (shouldFetchTodos(getState(), userId)) {
+      return dispatch(fetchTodos(userId));
+    }
+  };
+}
+function shouldFetchTodos(state, userId) {
+  const todos = state.todosbyUserId[userId];
+  if (!todos) {
+    return true;
+  } else if (todos.isFetching) {
+    return false;
+  } else {
+    return todos.didInvalidate;
+  }
+}
+function receiveTodos(userId, json) {
+  return {
+    type: RECEIVE_TODOS,
+    userId,
+    todos: json.data.children.map(child => child.data),
+    receivedAt: Date.now()
+  };
+}
+function requestTodos(userId) {
+  return {
+    type: REQUEST_TODOS,
+    userId
+  };
+}
 
 export const fetchTodo = (userId, id) => dispatch => (
   TodoAPIUtil.fetchTodo(userId, id)
@@ -21,10 +58,7 @@ export function addTodo() {
 
   };
 }
-const receiveTodos = (todos) => ({
-  type: RECEIVE_TODOS,
-  todos,
-});
+
 
 const receiveTodo = (todo) => ({
   type: RECEIVE_TODO,
@@ -61,23 +95,24 @@ export function fetchUsers(){
     //     }
     // };
     //   let myU = xhr.send();
-    console.log("hi");
     let xhr = new XMLHttpRequest();
-    let user = { email:'kevin@kevin.com', password:'password' };
+    let user = { email:'k2@k2.com', password:'password' };
     xhr.open('POST', 'https://dodateweb.herokuapp.com/api/session', true);
     xhr.setRequestHeader("Content-Type", 'application/json');
+    let  myU = xhr.send(JSON.stringify({user}));
+
     xhr.onload = function() {
         if (xhr.status === 200) {
-            alert('Something went wrong.  Name is now ' + xhr.responseText);
+          let myText = eval('(' + xhr.responseText + ')');
+          return myText;
         }
         else if (xhr.status !== 200) {
             alert('Request failed.  Returned status of ' + xhr.status);
         }
     };
-    console.log({user}, xhr);
-  let  myU = xhr.send(JSON.stringify({user}));
 
-  console.log(myU);
+
+
 
     // return Api.get(`/users`).then(resp => { console.log(resp);
     // }).catch( (ex) => {

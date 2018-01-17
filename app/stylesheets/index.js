@@ -68,6 +68,50 @@ export const day = StyleSheet.create({
     alignSelf: 'center',
     color: 'black',
   },
+  none:{
+    backgroundColor: "white",
+    flex: 1,
+    height: 50
+  },
+  task: {
+    fontSize: 20
+  },
+  blue:{
+    backgroundColor: "rgba(135,210,250,.15)",
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    flex: 1,
+    height: 50
+  },
+  orange:{
+    backgroundColor: "rgba(255, 182, 194, 0.4)",
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    flex: 1,
+    height: 50
+  },
+  yellow:{
+    backgroundColor: "rgba(255, 255, 224, 0.3)",
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    flex: 1,
+    height: 50
+  },
+  green:{
+    backgroundColor: "rgba(172, 255, 47, 0.466)",
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    flex: 1,
+    height: 50
+  },
+  pink:{
+    backgroundColor: "rgba(252, 80, 186, 0.466)",
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    flex: 1,
+    height: 50
+  },
+
   border: {
     borderWidth: 2,
     borderStyle: 'solid',

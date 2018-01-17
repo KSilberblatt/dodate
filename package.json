@@ -19,7 +19,9 @@
     "preset": "jest-expo"
   },
   "dependencies": {
+    "cross-fetch": "^1.1.1",
     "expo": "^23.0.4",
+    "prop-types": "^15.6.0",
     "react": "16.0.0",
     "react-native": "0.50.3",
     "react-native-material-design": "^0.3.7",
