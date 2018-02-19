@@ -128,6 +128,7 @@ export const day = StyleSheet.create({
     position: 'absolute',
     fontSize: 100,
     color: myGrey,
+    backgroundColor: 'transparent',
     top: '35%'
   },
   hour: {
